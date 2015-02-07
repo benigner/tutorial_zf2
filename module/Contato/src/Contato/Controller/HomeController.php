@@ -21,6 +21,8 @@ class HomeController extends AbstractActionController
     public function indexAction()
     {
 
+        
+        
         /**
          * função anônima para var_dump estilizado
          */
@@ -50,6 +52,22 @@ class HomeController extends AbstractActionController
                 $adapter->getCurrentSchema()
         );
 
+        
+        /**
+        * Uso de cache
+        */
+        if (!$this->cache()->hasItem('nome')) {
+            $myVarDump(
+                "Registro de Cache Agora",
+                $this->cache()->setItem('nome', 'igor')
+            );
+        } else {
+            $myVarDump(
+                "Cache Existente",
+                $this->cache()->getItem('nome')
+            );  
+        }        
+        
         /**
          * contar quantidade de elementos da nossa tabela
          */
